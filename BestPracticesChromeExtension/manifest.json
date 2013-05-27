@@ -1,0 +1,39 @@
+{
+  "manifest_version": 2,
+  "name" : "Web Developer Checklist",
+  "version" : "1.3",
+  "description" : "Analyses any web page for violations of best practices'",
+  "permissions": ["tabs", "<all_urls>"],
+    
+  "commands": {
+    "_execute_page_action": {
+      "suggested_key": {
+        "default": "Alt+1",
+         "mac": "Alt+1"
+      }
+    }
+  },
+  
+  "page_action": {
+    "default_icon": "app/img/vs-19.png",
+    "default_popup": "app/popup.html"
+  },
+  
+  "content_scripts" : [
+    {
+      "matches" : ["<all_urls>"],
+      "js" : ["app/rules/favicon.js", "app/rules/mediaqueries.js", "app/contentscript.js"],
+      "run_at" : "document_end",
+      "all_frames" : false
+    }
+  ],
+
+  "background" : {
+    "scripts": ["app/background.js"]
+  },
+
+  "icons" : {
+    "48" : "app/img/vs-48.png",
+    "128" : "app/img/vs-128.png"
+  }
+}

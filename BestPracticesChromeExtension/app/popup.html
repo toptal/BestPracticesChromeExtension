@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Visual Studio Browser Link</title>
+    <style>
+        body {
+            font: 13px arial;
+            min-width: 240px;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0 0 10px;
+            padding: 0;
+            border: 1px solid #c0c0c0;
+            border-radius: 3px;
+            background: #f1f1f1;
+        }
+
+        li {
+            padding: 2px 4px;
+        }
+
+            li:first-child {
+                font-weight: bold;
+            }
+
+            li:not(:first-child):before {
+                content: '⌛';
+                width: 20px;
+                display: inline-block;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            li.true:before {
+                content: '✓';
+                color: green;
+            }
+
+            li.false:before {
+                content: 'X';
+                color: red;
+            }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>Web Developer Checklist</h2>
+    </header>
+
+    <div id="results"></div>
+
+    <p>More info and help <a href="http://webdevchecklist.com" id="webdevchecklist">webdevchecklist.com</a></p>
+
+    <script src="popup.js"></script>
+</body>
+</html>
+
