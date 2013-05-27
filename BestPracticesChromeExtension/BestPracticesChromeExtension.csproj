@@ -76,10 +76,10 @@
     <Content Include="scripts\_references.js" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="manifest.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="manifest.json" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
