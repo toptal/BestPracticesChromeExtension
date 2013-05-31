@@ -57,7 +57,7 @@
     <Content Include="scripts\_references.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="manifest.json" />
+    <Content Include="app\manifest.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
@@ -88,7 +88,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-
   <PropertyGroup>
     <AppFolder Condition=" '$(AppFolder)'=='' ">app\</AppFolder>
     <AppFileName Condition=" '$(AppFileName)'=='' ">$(AssemblyName).zip</AppFileName>
@@ -102,22 +101,26 @@
   <PropertyGroup>
     <BuildLib Condition=" '$(BuildLib)'=='' ">$(MSBuildProjectDirectory)\..\Build\Lib\</BuildLib>
   </PropertyGroup>
-  <UsingTask AssemblyFile="$(BuildLib)MSBuild.ExtensionPack.dll" TaskName="MSBuild.ExtensionPack.Compression.Zip"/>
-  
-  <Target Name="Build">    
-    <MakeDir Directories="$(OutputPath)"/>
-
+  <UsingTask AssemblyFile="$(BuildLib)MSBuild.ExtensionPack.dll" TaskName="MSBuild.ExtensionPack.Compression.Zip" />
+  <Target Name="Build">
+    <MakeDir Directories="$(OutputPath)" />
     <ItemGroup>
-      <_AppCandidateFilesToZip Remove="@(_AppCandidateFilesToZip)"/>
-      <_AppCandidateFilesToZip Include="@(Content);@(None)"/>
+      <_AppCandidateFilesToZip Remove="@(_AppCandidateFilesToZip)" />
+      <_AppCandidateFilesToZip Include="@(Content);@(None)" />
     </ItemGroup>
-
     <FindUnderPath Path="$(AppFolder)" Files="@(_AppCandidateFilesToZip)">
-      <Output TaskParameter="InPath" ItemName="_AppFilesToZip"/>
+      <Output TaskParameter="InPath" ItemName="_AppFilesToZip" />
     </FindUnderPath>
 
     <Message Text="App files to zip: @(_AppFilesToZip->'%(RelativeDir)%(Filename)%(Extension)')" Importance="high"/>
 
+    <Message Text="App files to zip: @(_AppFilesToZip->'%(RelativeDir)%(Filename)%(Extension)')" Importance="high" />
+    <ItemGroup>
+      <_OutputFile Remove="@(OutputFile)" />
+      <_OutputFile Include="$(OutputPath)$(AppFilename)" />
+      <_AppFolderItem Remove="@(_AppFolderItem)" />
+      <_AppFolderItem Include="$(AppFolder)" />
+    </ItemGroup>
     <PropertyGroup>
       <_AppFolderFullPath>%(AppFolderItem.FullPath)</_AppFolderFullPath>
     </PropertyGroup>
@@ -130,23 +133,23 @@
       ZipFileName="%(AppFileNameItem.FullPath)"
       RemoveRoot="$(_AppFolderFullPath)"
       CompressionLevel="BestCompression" />
+    <Message Text="Creating package .zip at [%(_OutputFile.FullPath)]" Importance="high" />
+    <MSBuild.ExtensionPack.Compression.Zip TaskAction="Create" CompressFiles="@(_AppFilesToZip)" ZipFileName="%(_OutputFile.FullPath)" RemoveRoot="$(_AppFolderFullPath)" CompressionLevel="BestCompression" />
   </Target>
-
   <PropertyGroup>
     <RebuildDependsOn>
       Clean;
       Build;
     </RebuildDependsOn>
   </PropertyGroup>
-  <Target Name="Rebuild" DependsOnTargets="$(RebuildDependsOn)"/>
+  <Target Name="Rebuild" DependsOnTargets="$(RebuildDependsOn)" />
   <Target Name="Clean">
     <!-- delete all the files in the output folder -->
     <ItemGroup>
-      <_FilesToDelete Remove="@(_FilesToDelete)"/>
-      <_FilesToDelete Include="$(OutputPath)**\*"/>
+      <_FilesToDelete Remove="@(_FilesToDelete)" />
+      <_FilesToDelete Include="$(OutputPath)**\*" />
     </ItemGroup>
-
     <Message Text="Deleting files: @(_FilesToDelete)" />
-    <Delete Files="@(_FilesToDelete)"/>
+    <Delete Files="@(_FilesToDelete)" />
   </Target>
 </Project>
