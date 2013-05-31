@@ -8,7 +8,7 @@ var url = location.protocol + "//" + location.host,
         "SEO": {
             microdata: { text: "Add meaning with Microdata", result: document.querySelector("[itemscope]") !== null },
             keywords: { text: "Meta keywords and description", result: document.querySelector("meta[name=keywords]") !== null && document.querySelector("meta[name=description]") !== null },
-            h1: { text: "Use <h1> only once per page", result: document.querySelectorAll("h1").length === 1 },
+            h1: { text: "Use <h1> once per page", result: document.querySelectorAll("h1").length === 1 },
         },
         "Mobile": {
             mediaqueries: { text: "CSS Media Queries", result: rules.mediaQueryLocal() },
