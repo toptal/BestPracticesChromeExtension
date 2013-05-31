@@ -16,20 +16,20 @@
   
   "page_action": {
     "default_icon": "img/vs-19.png",
-    "default_popup": "popup.html"
+    "default_popup": "popup/popup.html"
   },
   
   "content_scripts" : [
     {
       "matches" : ["<all_urls>"],
-      "js" : ["rules/favicon.js", "rules/mediaqueries.js", "contentscript.js"],
+      "js" : ["content/favicon.js", "content/mediaqueries.js", "content/base.js"],
       "run_at" : "document_end",
       "all_frames" : false
     }
   ],
 
   "background" : {
-    "scripts": ["background.js"]
+    "scripts": ["background/background.js"]
   },
 
   "icons" : {

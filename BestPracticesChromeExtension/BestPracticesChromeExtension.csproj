@@ -38,21 +38,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="app\background.js" />
-    <Content Include="app\contentscript.js" />
+    <Content Include="app\background\background.js" />
+    <Content Include="app\content\base.js" />
     <Content Include="app\img\failure-19.png" />
-    <Content Include="app\rules\favicon.js" />
+    <Content Include="app\content\favicon.js" />
     <Content Include="screenshots\screenshot.png" />
     <Content Include="app\img\success-19.png" />
     <Content Include="app\img\vs-128.png" />
     <Content Include="app\img\vs-19.png" />
     <Content Include="app\img\vs-48.png" />
     <Content Include="app\img\warning-19.png" />
-    <Content Include="app\popup.html" />
-    <Content Include="app\popup.js" />
-    <Content Include="app\rules\mediaqueries.js" />
+    <Content Include="app\popup\popup.html" />
+    <Content Include="app\popup\popup.js" />
+    <Content Include="app\content\mediaqueries.js" />
     <Content Include="index.htm" />
-    <Content Include="robots.txt" />
     <None Include="scripts\chrome-api-vsdoc.js" />
     <Content Include="scripts\_references.js" />
   </ItemGroup>
