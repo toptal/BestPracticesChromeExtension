@@ -93,10 +93,14 @@
     <AppFolder Condition=" '$(AppFolder)'=='' ">app\</AppFolder>
     <AppFileName Condition=" '$(AppFileName)'=='' ">$(AssemblyName).zip</AppFileName>
   </PropertyGroup>
-  <PropertyGroup>
-    <EnableCompressVsix Condition=" '$(EnableCompressVsix)'=='' ">true</EnableCompressVsix>
-    <BuildLib Condition=" '$(BuildLib)'=='' ">$(MSBuildProjectDirectory)\..\Build\Lib\</BuildLib>
 
+  <ItemGroup>
+    <AppFileNameItem Include="$(OutputPath)$(AppFilename)" />
+    <AppFolderItem Include="$(AppFolder)" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <BuildLib Condition=" '$(BuildLib)'=='' ">$(MSBuildProjectDirectory)\..\Build\Lib\</BuildLib>
   </PropertyGroup>
   <UsingTask AssemblyFile="$(BuildLib)MSBuild.ExtensionPack.dll" TaskName="MSBuild.ExtensionPack.Compression.Zip"/>
   
@@ -114,23 +118,16 @@
 
     <Message Text="App files to zip: @(_AppFilesToZip->'%(RelativeDir)%(Filename)%(Extension)')" Importance="high"/>
 
-    <ItemGroup>
-      <_OutputFile Remove="@(OutputFile)" />
-      <_OutputFile Include="$(OutputPath)$(AppFilename)" />
-      <_AppFolderItem Remove="@(_AppFolderItem)"/>
-      <_AppFolderItem Include="$(AppFolder)" />
-    </ItemGroup>
-    
     <PropertyGroup>
-      <_AppFolderFullPath>%(_AppFolderItem.FullPath)</_AppFolderFullPath>
+      <_AppFolderFullPath>%(AppFolderItem.FullPath)</_AppFolderFullPath>
     </PropertyGroup>
     
-    <Message Text="Creating package .zip at [%(_OutputFile.FullPath)]" Importance="high"/>
+    <Message Text="Creating package .zip at [%(AppFileNameItem.FullPath)]" Importance="high"/>
     
     <MSBuild.ExtensionPack.Compression.Zip
       TaskAction="Create"
       CompressFiles="@(_AppFilesToZip)"
-      ZipFileName="%(_OutputFile.FullPath)"
+      ZipFileName="%(AppFileNameItem.FullPath)"
       RemoveRoot="$(_AppFolderFullPath)"
       CompressionLevel="BestCompression" />
   </Target>
