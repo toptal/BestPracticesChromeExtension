@@ -15,25 +15,25 @@
   },
   
   "page_action": {
-    "default_icon": "app/img/vs-19.png",
-    "default_popup": "app/popup.html"
+    "default_icon": "img/vs-19.png",
+    "default_popup": "popup.html"
   },
   
   "content_scripts" : [
     {
       "matches" : ["<all_urls>"],
-      "js" : ["app/rules/favicon.js", "app/rules/mediaqueries.js", "app/contentscript.js"],
+      "js" : ["rules/favicon.js", "rules/mediaqueries.js", "contentscript.js"],
       "run_at" : "document_end",
       "all_frames" : false
     }
   ],
 
   "background" : {
-    "scripts": ["app/background.js"]
+    "scripts": ["background.js"]
   },
 
   "icons" : {
-    "48" : "app/img/vs-48.png",
-    "128" : "app/img/vs-128.png"
+    "48" : "img/vs-48.png",
+    "128" : "img/vs-128.png"
   }
 }

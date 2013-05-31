@@ -47,13 +47,13 @@ function updateBadge() {
     page.percent = percent;
 
     if (percent > 80) {
-        chrome.pageAction.setIcon({ tabId: lastTab.id, path: "app/img/success-19.png" });
+        chrome.pageAction.setIcon({ tabId: lastTab.id, path: "img/success-19.png" });
     }
     else if (percent >= 50) {
-        chrome.pageAction.setIcon({ tabId: lastTab.id, path: "app/img/warning-19.png" });
+        chrome.pageAction.setIcon({ tabId: lastTab.id, path: "img/warning-19.png" });
     }
     else {
-        chrome.pageAction.setIcon({ tabId: lastTab.id, path: "app/img/failure-19.png" });
+        chrome.pageAction.setIcon({ tabId: lastTab.id, path: "img/failure-19.png" });
     }
 }
 
