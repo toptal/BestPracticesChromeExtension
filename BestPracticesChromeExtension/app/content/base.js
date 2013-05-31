@@ -1,5 +1,5 @@
-/// <reference path="rules/mediaqueries.js" />
-/// <reference path="rules/favicon.js" />
+/// <reference path="mediaqueries.js" />
+/// <reference path="favicon.js" />
 
 var url = location.protocol + "//" + location.host,
     result = {
