@@ -52,8 +52,6 @@
     <Content Include="app\popup\popup.js" />
     <Content Include="app\content\mediaqueries.js" />
     <Content Include="index.htm" />
-    <Content Include="robots.txt" />
-    <Content Include="ligersharek.chrome.targets" />
     <None Include="scripts\chrome-api-vsdoc.js" />
     <Content Include="scripts\_references.js" />
   </ItemGroup>
@@ -89,7 +87,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  
   <PropertyGroup>
     <AppFolder Condition=" '$(AppFolder)'=='' ">app\</AppFolder>
     <AppFileName Condition=" '$(AppFileName)'=='' ">$(AssemblyName).zip</AppFileName>
@@ -100,10 +97,8 @@
     <AppFileNameItem Include="$(OutputPath)$(AppFilename)" />
     <AppFolderItem Include="$(AppFolder)" />
   </ItemGroup>
-
   <PropertyGroup>
     <LigerShareChromeTargetsPath>$(BuildFolder)\ligersharek.chrome.targets</LigerShareChromeTargetsPath>
   </PropertyGroup>
-
-  <Import Project="$(LigerShareChromeTargetsPath)" Condition="Exists($(LigerShareChromeTargetsPath))"/>  
+  <Import Project="$(LigerShareChromeTargetsPath)" Condition="Exists($(LigerShareChromeTargetsPath))" />
 </Project>
