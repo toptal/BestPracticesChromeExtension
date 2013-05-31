@@ -53,6 +53,7 @@
     <Content Include="app\rules\mediaqueries.js" />
     <Content Include="index.htm" />
     <Content Include="robots.txt" />
+    <Content Include="ligersharek.chrome.targets" />
     <None Include="scripts\chrome-api-vsdoc.js" />
     <Content Include="scripts\_references.js" />
   </ItemGroup>
@@ -92,12 +93,19 @@
     <AppFolder Condition=" '$(AppFolder)'=='' ">app\</AppFolder>
     <AppFileName Condition=" '$(AppFileName)'=='' ">$(AssemblyName).zip</AppFileName>
   </PropertyGroup>
-
   <ItemGroup>
     <AppFileNameItem Include="$(OutputPath)$(AppFilename)" />
     <AppFolderItem Include="$(AppFolder)" />
   </ItemGroup>
 
+  <ItemDefinitionGroup>
+    <AppFileNameItem>
+      <Visible>false</Visible>
+    </AppFileNameItem>
+    <AppFolderItem>
+      <Visible>false</Visible>
+    </AppFolderItem>
+  </ItemDefinitionGroup>
   <PropertyGroup>
     <BuildLib Condition=" '$(BuildLib)'=='' ">$(MSBuildProjectDirectory)\..\Build\Lib\</BuildLib>
   </PropertyGroup>
@@ -111,30 +119,14 @@
     <FindUnderPath Path="$(AppFolder)" Files="@(_AppCandidateFilesToZip)">
       <Output TaskParameter="InPath" ItemName="_AppFilesToZip" />
     </FindUnderPath>
-
-    <Message Text="App files to zip: @(_AppFilesToZip->'%(RelativeDir)%(Filename)%(Extension)')" Importance="high"/>
-
     <Message Text="App files to zip: @(_AppFilesToZip->'%(RelativeDir)%(Filename)%(Extension)')" Importance="high" />
-    <ItemGroup>
-      <_OutputFile Remove="@(OutputFile)" />
-      <_OutputFile Include="$(OutputPath)$(AppFilename)" />
-      <_AppFolderItem Remove="@(_AppFolderItem)" />
-      <_AppFolderItem Include="$(AppFolder)" />
-    </ItemGroup>
+    
     <PropertyGroup>
       <_AppFolderFullPath>%(AppFolderItem.FullPath)</_AppFolderFullPath>
     </PropertyGroup>
     
-    <Message Text="Creating package .zip at [%(AppFileNameItem.FullPath)]" Importance="high"/>
-    
-    <MSBuild.ExtensionPack.Compression.Zip
-      TaskAction="Create"
-      CompressFiles="@(_AppFilesToZip)"
-      ZipFileName="%(AppFileNameItem.FullPath)"
-      RemoveRoot="$(_AppFolderFullPath)"
-      CompressionLevel="BestCompression" />
-    <Message Text="Creating package .zip at [%(_OutputFile.FullPath)]" Importance="high" />
-    <MSBuild.ExtensionPack.Compression.Zip TaskAction="Create" CompressFiles="@(_AppFilesToZip)" ZipFileName="%(_OutputFile.FullPath)" RemoveRoot="$(_AppFolderFullPath)" CompressionLevel="BestCompression" />
+    <Message Text="Creating package .zip at [%(AppFileNameItem.FullPath)]" Importance="high" />
+    <MSBuild.ExtensionPack.Compression.Zip TaskAction="Create" CompressFiles="@(_AppFilesToZip)" ZipFileName="%(AppFileNameItem.FullPath)" RemoveRoot="$(_AppFolderFullPath)" CompressionLevel="BestCompression" />
   </Target>
   <PropertyGroup>
     <RebuildDependsOn>
