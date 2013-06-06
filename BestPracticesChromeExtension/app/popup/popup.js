@@ -1,67 +1,79 @@
 
 (function () {
 
-    var div = document.getElementById("results");
-    var bgp = chrome.extension.getBackgroundPage();
-    var page = bgp.getPage();
+    chrome.tabs.getSelected(null, function (tab) {
+        chrome.tabs.executeScript(tab.id, { file: "popup/rules.js", runAt: "document_end" }, function (response) { });
+    });
 
-    function update() {
-        div.innerHTML = "";
+    chrome.extension.onRequest.addListener(function (request, sender, sendResponse) {
+        if (request === "done") {
+            var bgp = chrome.extension.getBackgroundPage();
 
-        for (var cat in page) {
-
-            if (cat === "url" || cat === "percent" || cat === "rawUrl")
-                continue;
-
-            createItems(cat);
+            Ajax.load(bgp.page, updateItem);
+            createResults(bgp.page);
         }
-
-        //var progress = document.getElementById("progress");
-        //progress.value = page.percent;
-        //progress.title = Math.round(page.percent) + "%";
-    }
-
-    function createItems(cat) {
-        var ul = document.querySelector("ul[data-cat='" + cat + "']");
-
-        if (ul === null) {
-
-            ul = document.createElement("ul");
-            ul.setAttribute("data-cat", cat);
-
-            var header = document.createElement("li");
-            header.innerText = cat;
-            ul.appendChild(header);
-
-            div.appendChild(ul);
-        }
-
-        for (var key in page[cat]) {
-
-            var li = document.createElement("li");
-            li.innerText = page[cat][key].text;
-            li.className = page[cat][key].result;
-
-            ul.appendChild(li);
-        }
-    }
+    });
 
     document.getElementById("webdevchecklist").addEventListener("click", function (e) {
         window.open(e.target.href);
     });
 
-    if ((!page.Performance || !page.Performance.pagespeed) && page.url.indexOf("localhost") === -1) {
-        bgp.getUrl("https://www.googleapis.com/pagespeedonline/v1/runPagespeed?url=" + page.url + "&key=AIzaSyCUKP2H8Tq02_EmppV1oct2K_gOaZquA3s&prettyprint=false", function (xhr) {
-            if (xhr.status === 200) {
-                var score = JSON.parse(xhr.responseText).score;
-                page.Performance = page.Performance || {};
-                page.Performance.pagespeed = { text: "Google PageSpeed score of " + score + "/100", result: score > 90 };
-                bgp.setPage(page);
-                createItems("Performance");
+    function createResults(page) {
+
+        document.getElementById("results").innerHTML = "";
+
+        for (var cat in page) {
+
+            if (cat === "url")
+                continue;
+
+            var ul = document.querySelector("ul[data-cat='" + cat + "']") || createHeader(cat);
+
+            for (var item in page[cat]) {
+
+                var li = document.createElement("li");
+                li.innerText = page[cat][item].text;
+                li.className = page[cat][item].result;
+                li.setAttribute("data-item", item);
+
+                ul.appendChild(li);
             }
-        });
+        }
+
+        reportProgress();
     }
 
-    update();
+    function createHeader(cat) {
+        var ul = document.createElement("ul");
+        ul.setAttribute("data-cat", cat);
 
+        var header = document.createElement("li");
+        header.innerText = cat;
+        ul.appendChild(header);
+
+        document.getElementById("results").appendChild(ul);
+
+        return ul;
+    }
+
+    function updateItem(key, item) {
+
+        var li = document.querySelector("li[data-item='" + key + "']");
+
+        if (li) {
+            li.className = item.result;
+            li.innerText = item.text;
+            reportProgress();
+        }
+    }
+
+    function reportProgress() {
+        var fail = document.querySelectorAll(".false").length;
+        var success = document.querySelectorAll(".true").length;
+        var percent = success / (fail + success) * 100;
+
+        var progress = document.getElementById("progress");
+        progress.querySelector("strong").style.left = percent - 3 + "%";
+        progress.title = Math.round(percent) + "%";
+    }
 })();

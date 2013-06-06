@@ -8,6 +8,27 @@
             min-width: 240px;
         }
 
+        h2 {
+            margin: 0;
+            padding: 0;
+        }
+
+        #progress {
+            width: 100%;
+            height: 6px;
+            position: relative;
+            top: -7px;
+            background: linear-gradient(to right, red, yellow, green);
+            display: inline-block;
+        }
+
+        #progress strong{
+            position: relative;
+            top: -1px;
+            cursor: default;
+            transition: left ease 1s;
+        }
+
         ul {
             list-style: none;
             margin: 0 0 10px;
@@ -18,7 +39,7 @@
         }
 
         li {
-            padding: 2px 4px;
+            padding: 1px 4px;
         }
 
             li:first-child {
@@ -26,21 +47,23 @@
             }
 
             li:not(:first-child):before {
-                content: '⌛';
+                content: '?' /*'⌛'*/;
                 width: 20px;
                 display: inline-block;
                 text-align: center;
                 font-weight: bold;
+                color: orange;
             }
 
             li.true:before {
                 content: '✓';
                 color: green;
+                font-weight: normal;
             }
 
             li.false:before {
-                content: 'X';
-                color: red;
+                content: 'x';
+                color: red;                
             }
     </style>
 </head>
@@ -49,12 +72,16 @@
 
     <header>
         <h2>Web Developer Checklist</h2>
+        <span id="progress">
+            <strong>▲</strong>
+        </span>
     </header>
 
     <div id="results"></div>
 
     <p>More info and help <a href="http://webdevchecklist.com" id="webdevchecklist">webdevchecklist.com</a></p>
 
+    <script src="ajax.js"></script>
     <script src="popup.js"></script>
 </body>
 </html>

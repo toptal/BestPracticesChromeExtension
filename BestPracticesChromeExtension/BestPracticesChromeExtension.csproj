@@ -39,18 +39,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app\background\background.js" />
-    <Content Include="app\content\base.js" />
-    <Content Include="app\img\failure-19.png" />
-    <Content Include="app\content\favicon.js" />
+    <Content Include="app\popup\rules.js" />
+    <Content Include="app\popup\ajax.js" />
     <Content Include="screenshots\screenshot.png" />
-    <Content Include="app\img\success-19.png" />
     <Content Include="app\img\vs-128.png" />
     <Content Include="app\img\vs-19.png" />
     <Content Include="app\img\vs-48.png" />
-    <Content Include="app\img\warning-19.png" />
     <Content Include="app\popup\popup.html" />
     <Content Include="app\popup\popup.js" />
-    <Content Include="app\content\mediaqueries.js" />
     <Content Include="index.htm" />
     <None Include="scripts\chrome-api-vsdoc.js" />
     <Content Include="scripts\_references.js" />
