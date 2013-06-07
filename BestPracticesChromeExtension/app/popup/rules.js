@@ -125,7 +125,7 @@
                 continue;
 
             for (var r = 0; r < css.cssRules.length; r++) {
-                if (css.rules[r].type === window.CSSRule.MEDIA_RULE) {
+                if (css.rules[r] && css.rules[r].type === window.CSSRule.MEDIA_RULE) {
                     return true;
                 }
             }
