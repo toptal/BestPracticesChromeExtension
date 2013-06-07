@@ -24,7 +24,7 @@
                 },
                 "Environment integration": {
                     twitter: { text: "Twitter", result: document.querySelector("meta[name='twitter:title']") !== null },
-                    opengraph: { text: "OpenGraph/Facebook", result: document.querySelector("meta[name^='og:']") !== null },
+                    opengraph: { text: "OpenGraph/Facebook", result: document.querySelector("meta[name^='og:'], meta[property^='og:']") !== null },
                     windows: { text: "Windows/Windows Phone", result: document.querySelector("meta[name='application-name']") !== null || document.querySelector("meta[name^='msapplication']") !== null },
                     ios: { text: "Apple iOS", result: document.querySelector("link[rel^='apple-']") !== null },
                 },
