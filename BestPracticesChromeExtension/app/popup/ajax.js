@@ -8,23 +8,29 @@ var Ajax = (function () {
             getUrl("https://www.googleapis.com/pagespeedonline/v1/runPagespeed?url=" + page.url + "&key=AIzaSyCUKP2H8Tq02_EmppV1oct2K_gOaZquA3s&prettyprint=false", function (xhr) {
                 if (xhr.status === 200) {
                     var score = JSON.parse(xhr.responseText).score;
-                    page.Performance.pagespeed = { text: "Google PageSpeed score of " + score + "/100", result: score > 90 };
+                    page.Performance.pagespeed.text = "Google PageSpeed score of " + score + "/100";
+                    page.Performance.pagespeed.result = score > 90;
+                    updateItem("pagespeed", page.Performance.pagespeed);
+                }
+                else {
+                    page.Performance.pagespeed.text = "Google PageSpeed (quota limit)";
+                    page.Performance.pagespeed.description = "The daily quota has been reached<br />" + page.Performance.pagespeed.description;
                     updateItem("pagespeed", page.Performance.pagespeed);
                 }
             });
         }
         else {
-            page.Performance.pagespeed = { text: "Google PageSpeed (remote only)", result: "n/a" };
+            page.Performance.pagespeed.text = "Google PageSpeed (remote only)";
             updateItem("pagespeed", page.Performance.pagespeed);
         }
 
         // Robots.txt and XML Sitemap
         getUrl(page.url + "/robots.txt", function (xhr) {
-            page.SEO.robotstxt = { text: "Robots.txt exist", result: xhr.status === 200 };
+            page.SEO.robotstxt.result = (xhr.status === 200);
             //page.SEO.sitemap = { text: "Sitemap.xml exist", result: xhr.responseText.indexOf("sitemap") > -1 };
             updateItem("robotstxt", page.SEO.robotstxt);
         });
-        
+
         // Favicon
         if (!page.Usability.favicon.result) {
             getUrl(page.url + "/favicon.ico", function (xhr) {

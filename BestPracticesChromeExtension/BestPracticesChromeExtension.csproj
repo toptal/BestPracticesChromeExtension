@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app\background\background.js" />
+    <Content Include="app\popup\popup.css" />
     <Content Include="app\popup\rules.js" />
     <Content Include="app\popup\ajax.js" />
     <Content Include="screenshots\screenshot.png" />

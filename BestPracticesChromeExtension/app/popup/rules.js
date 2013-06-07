@@ -8,29 +8,92 @@
             result = {
                 url: location.protocol + "//" + location.host,
                 "SEO": {
-                    microdata: { text: "Add meaning with Microdata", result: document.querySelector("[itemscope]") !== null },
-                    keywords: { text: "Meta keywords and description", result: document.querySelector("meta[name=keywords]") !== null && document.querySelector("meta[name=description]") !== null },
-                    h1: { text: "Use <h1> once per page", result: document.querySelectorAll("h1").length === 1 },
-                    robotstxt: { text: "Robots.txt exist", result: "n/a" },
+                    microdata: {
+                        text: "Add meaning with Microdata",
+                        result: document.querySelector("[itemscope]") !== null,
+                        description: "<a href='http://schema.org/'>Schema.org referrence</a>"
+                    },
+                    keywords: {
+                        text: "Meta description",
+                        result: document.querySelector("meta[name=description]") !== null,
+                        description: "<a href='http://www.agent-seo.com/seo/meta-description-optimization-writing-effective-meta-descriptions-for-seo/'>Meta description</a>"
+                    },
+                    //h1: { text: "Use <h1> once per page", result: document.querySelectorAll("h1").length === 1, description: "<a href='http://tools.seobook.com/robots-txt/'>Robots.txt tutorial</a>" },
+                    robotstxt: {
+                        text: "Robots.txt exist",
+                        result: "n/a",
+                        description: "<a href='http://tools.seobook.com/robots-txt/'>Robots.txt tutorial</a>"
+                    },
                 },
                 "Mobile": {
-                    mediaqueries: { text: "CSS Media Queries", result: mediaQueryLocal() },
-                    viewport: { text: "Viewport meta tag", result: document.querySelector("meta[name='viewport']") !== null },
+                    mediaqueries: {
+                        text: "CSS Media Queries",
+                        result: mediaQueryLocal(),
+                        description: "<a href='http://cssmediaqueries.com/what-are-css-media-queries.html'>Media queries explained</a>"
+                    },
+                    viewport: {
+                        text: "Viewport meta tag",
+                        result: document.querySelector("meta[name='viewport']") !== null,
+                        description: "<a href='https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag'>Using the viewport</a>"
+                    },
                 },
                 "Usability": {
-                    favicon: { text: "Favicon", result: document.querySelector("link[rel='shortcut icon']") !== null || document.querySelector("meta[itemprop='image']") !== null },
-                    friendlyurls: { text: "Use friendly URLs", result: location.href.indexOf("?") === -1 },
-                    landmarks: { text: "WAI-ARIA Landmarks", result: document.querySelector("[role]") !== null },
+                    favicon: {
+                        text: "Favicon",
+                        result: document.querySelector("link[rel='shortcut icon']") !== null || document.querySelector("meta[itemprop='image']") !== null,
+                        description: "<a href='http://www.xiconeditor.com/'>Online generator</a>"
+                    },
+                    friendlyurls: {
+                        text: "Use friendly URLs",
+                        result: location.href.indexOf("?") === -1,
+                        description: "<a href='http://www.techterms.com/definition/friendly_url'>Explanation and guide</a>"
+                    },
+                },
+                "Accessibility": {
+                    landmarks: {
+                        text: "WAI-ARIA Landmarks",
+                        result: document.querySelector("[role]") !== null,
+                        description: "<a href='http://accessibility.oit.ncsu.edu/blog/2011/06/30/using-aria-landmarks-a-demonstration/'>Using Landmarks</a>"
+                    },
+                    alt: {
+                        text: "Use 'alt' attributes on images",
+                        result: document.querySelector("img:not([alt])") === null,
+                        description: "<a href='http://accessibility.psu.edu/images'>Image 'alt' attribute tips</a>"
+                    },
                 },
                 "Environment integration": {
-                    twitter: { text: "Twitter", result: document.querySelector("meta[name='twitter:title']") !== null },
-                    opengraph: { text: "OpenGraph/Facebook", result: document.querySelector("meta[name^='og:'], meta[property^='og:']") !== null },
-                    windows: { text: "Windows/Windows Phone", result: document.querySelector("meta[name='application-name']") !== null || document.querySelector("meta[name^='msapplication']") !== null },
-                    ios: { text: "Apple iOS", result: document.querySelector("link[rel^='apple-']") !== null },
+                    twitter: {
+                        text: "Twitter Cards",
+                        result: document.querySelector("meta[name='twitter:title']") !== null,
+                        description: "<a href='https://dev.twitter.com/docs/cards'>Introduction to Twitter Cards</a>"
+                    },
+                    opengraph: {
+                        text: "OpenGraph/Facebook",
+                        result: document.querySelector("meta[name^='og:'], meta[property^='og:']") !== null,
+                        description: "<a href='http://ogp.me/'>OpenGraph protocol reference</a>"
+                    },
+                    windows: {
+                        text: "Windows 8/Windows Phone",
+                        result: document.querySelector("meta[name='application-name']") !== null || document.querySelector("meta[name^='msapplication']") !== null,
+                        description: "<a href='http://www.buildmypinnedsite.com/'>IE guide</a>"
+                    },
+                    ios: {
+                        text: "Apple iOS",
+                        result: document.querySelector("link[rel^='apple-']") !== null,
+                        description: "<a href='http://developer.apple.com/library/ios/#documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html'>iOS integration</a>"
+                    },
                 },
                 "Performance": {
-                    elements: { text: "Number of DOM elements (" + domElements + ")", result: domElements < 2000 },
-                    pagespeed: { text: "Google PageSpeed (loading...)", result: "n/a" },
+                    elements: {
+                        text: "Number of DOM elements (" + domElements + ")",
+                        result: domElements < 2000,
+                        description: "<a href='http://www.xpertdeveloper.com/2010/08/reduce-the-number-of-dom-elements-to-speed-up-your-website/'>Reduce the # of DOM elements</a>"
+                    },
+                    pagespeed: {
+                        text: "Google PageSpeed (loading...)",
+                        result: "n/a",
+                        description: "<a href='https://chrome.google.com/webstore/detail/pagespeed-insights-by-goo/gplegfbjlmmehdoakndmohflojccocli'>Download Google Page Speed</a>"
+                    },
                 }
             };
 
