@@ -69,7 +69,7 @@
                     },
                     opengraph: {
                         text: "OpenGraph/Facebook",
-                        result: document.querySelector("meta[name^='og:'], meta[property^='og:']") !== null,
+                        result: document.querySelector("meta[property^='og:']") !== null,
                         description: "<a href='http://ogp.me/'>OpenGraph protocol reference</a>"
                     },
                     windows: {
