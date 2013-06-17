@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name" : "Web Developer Checklist",
-  "version" : "1.4.5",
+  "version" : "1.5",
   "description" : "Analyses any web page for violations of best practices'",
   "permissions": ["tabs", "<all_urls>"],
     

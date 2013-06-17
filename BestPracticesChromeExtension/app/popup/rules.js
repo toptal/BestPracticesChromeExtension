@@ -13,7 +13,7 @@
                         result: document.querySelector("[itemscope]") !== null,
                         description: "<a href='http://schema.org/'>Schema.org referrence</a>"
                     },
-                    keywords: {
+                    description: {
                         text: "Meta description",
                         result: document.querySelector("meta[name=description]") !== null,
                         description: "<a href='http://www.agent-seo.com/seo/meta-description-optimization-writing-effective-meta-descriptions-for-seo/'>Meta description</a>"
