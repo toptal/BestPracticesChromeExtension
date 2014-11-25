@@ -48,6 +48,12 @@
                         result: location.href.indexOf("?") === -1,
                         description: "<a href='http://www.techterms.com/definition/friendly_url'>Explanation and guide</a>"
                     },
+                    validator: {
+                        text: "W3C validator",
+                        result: "n/a",
+                        html: document.documentElement.outerHTML,
+                        description: "<a href='http://validator.w3.org/'>Online W3C validator</a>"
+                    },
                 },
                 "Accessibility": {
                     landmarks: {

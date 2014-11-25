@@ -1,3 +1,4 @@
+var hasRun = false;
 
 (function () {
 
@@ -6,7 +7,8 @@
     });
 
     chrome.extension.onRequest.addListener(function (request, sender, sendResponse) {
-        if (request === "done") {
+        if (!hasRun && request === "done") {
+            hasRun = true;
             var bgp = chrome.extension.getBackgroundPage();
 
             Ajax.load(bgp.page, updateItem);

@@ -40,6 +40,24 @@ var Ajax = (function () {
                 }
             });
         }
+
+        // W3C validation
+        if (page.Usability.validator.result === "n/a") {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://validator.w3.org/check?output=json", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var errors = parseInt(xhr.getResponseHeader("X-W3C-Validator-Errors"), 10);
+                    if (!isNaN(errors)) {
+                        page.Usability.validator.result = (errors === 0);
+                        page.Usability.validator.text += " (" + errors + ")";
+                        updateItem("validator", page.Usability.validator);
+                    }
+                }
+            };
+            xhr.send("fragment=" + encodeURIComponent(page.Usability.validator.html));
+        }
     }
 
     function getUrl(url, callback) {

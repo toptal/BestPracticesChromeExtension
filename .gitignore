@@ -53,6 +53,7 @@ build/
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
+*.sln.ide
 
 *_i.c
 *_p.c
