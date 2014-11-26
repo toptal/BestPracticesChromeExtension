@@ -50,20 +50,23 @@ var Ajax = (function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var json = JSON.parse(xhr.responseText);
                     var errors = json.messages.length;
-                    if (!isNaN(errors) || true) {
-                        page.Usability.validator.result = (errors === 0);
-                        page.Usability.validator.text += " (" + errors + ")";
+
+                    page.Usability.validator.result = errors === 0;
+                    page.Usability.validator.text += " (" + errors + " errors)";
+
+                    if (errors > 0) {
                         page.Usability.validator.description = "";
+
                         for (var i = 0; i < json.messages.length; i++) {
                             page.Usability.validator.description += "<mark title='Line: " + json.messages[i].lastLine + " Column: " + json.messages[i].lastColumn + "'>" + json.messages[i].message + "</mark>"
                         }
-
-                        updateItem("validator", page.Usability.validator);
                     }
+
+                    updateItem("validator", page.Usability.validator);
                 }
             };
 
-            xhr.send("<!DOCTYPE html>\r\n" + page.Usability.validator.html);
+            xhr.send(page.Usability.validator.html);
         }
     }
 

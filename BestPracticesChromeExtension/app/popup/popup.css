@@ -7,7 +7,6 @@ h2 {
     margin: 0;
     padding: 0;
     text-align: center;
-    -ms-text-justify: distribute;
     font-size: 20px;
 }
 
@@ -97,12 +96,14 @@ li {
     }
 
     li[data-active] span {
-        max-height: 999px;
+        max-height: none;
     }
 
-    li[data-active] span mark{
-        line-height: normal;
-        background: none;
-        display: block;
-        margin-bottom: 5px;
-    }
+        li[data-active] span mark {
+            line-height: normal;
+            background: none;
+            display: block;
+            margin-top: .8em;
+            font-style: italic;
+            /*width: 400px;*/
+        }

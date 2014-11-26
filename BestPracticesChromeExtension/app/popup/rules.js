@@ -49,10 +49,10 @@
                         description: "<a href='http://www.techterms.com/definition/friendly_url'>Explanation and guide</a>"
                     },
                     validator: {
-                        text: "W3C validator",
+                        text: "HTML validation",
                         result: "n/a",
-                        html: document.documentElement.outerHTML,
-                        description: "<a href='http://validator.w3.org/'>Online W3C validator</a>"
+                        html: new XMLSerializer().serializeToString(document),
+                        description: "<a href='http://validator.nu/'>Online validator</a>"
                     },
                 },
                 "Accessibility": {

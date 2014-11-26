@@ -73,7 +73,6 @@ var hasRun = false;
                 span.innerHTML = page[cat][item].description;
                 li.appendChild(span);
 
-
                 ul.appendChild(li);
             }
         }
