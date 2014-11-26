@@ -44,19 +44,26 @@ var Ajax = (function () {
         // W3C validation
         if (page.Usability.validator.result === "n/a") {
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://validator.w3.org/check?output=json", true);
-            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.open("POST", "http://html5.validator.nu?out=json&level=error&laxtype=yes", true);
+            xhr.setRequestHeader("Content-type", "text/html");
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    var errors = parseInt(xhr.getResponseHeader("X-W3C-Validator-Errors"), 10);
-                    if (!isNaN(errors)) {
+                    var json = JSON.parse(xhr.responseText);
+                    var errors = json.messages.length;
+                    if (!isNaN(errors) || true) {
                         page.Usability.validator.result = (errors === 0);
                         page.Usability.validator.text += " (" + errors + ")";
+                        page.Usability.validator.description = "";
+                        for (var i = 0; i < json.messages.length; i++) {
+                            page.Usability.validator.description += "<mark title='Line: " + json.messages[i].lastLine + " Column: " + json.messages[i].lastColumn + "'>" + json.messages[i].message + "</mark>"
+                        }
+
                         updateItem("validator", page.Usability.validator);
                     }
                 }
             };
-            xhr.send("fragment=" + encodeURIComponent(page.Usability.validator.html));
+
+            xhr.send("<!DOCTYPE html>\r\n" + page.Usability.validator.html);
         }
     }
 
