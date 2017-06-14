@@ -44,9 +44,9 @@ var Ajax = (function () {
         // W3C validation
         if (page.Usability.validator.result === "n/a") {
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://html5.validator.nu?out=json&level=error&laxtype=yes", true);
+            xhr.open("POST", "https://html5.validator.nu?out=json&level=error&laxtype=yes", true);
             xhr.setRequestHeader("Content-type", "text/html");
-            xhr.onreadystatechange = function () {
+            xhr.onload = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var json = JSON.parse(xhr.responseText);
                     var errors = json.messages.length;
@@ -58,7 +58,7 @@ var Ajax = (function () {
                         page.Usability.validator.description = "";
 
                         for (var i = 0; i < json.messages.length; i++) {
-                            page.Usability.validator.description += "<mark title='Line: " + json.messages[i].lastLine + " Column: " + json.messages[i].lastColumn + "'>" + json.messages[i].message + "</mark>"
+                            page.Usability.validator.description += "<mark title='Line: " + json.messages[i].lastLine + " Column: " + json.messages[i].lastColumn + "'>" + json.messages[i].message + "</mark>";
                         }
                     }
 

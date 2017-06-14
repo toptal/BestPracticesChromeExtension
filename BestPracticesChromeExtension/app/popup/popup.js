@@ -1,18 +1,19 @@
 var hasRun = false;
 
 (function () {
-
-    chrome.tabs.getSelected(null, function (tab) {
-        chrome.tabs.executeScript(tab.id, { file: "popup/rules.js", runAt: "document_end" }, function (response) { });
+    browser = (chrome.tabs) ? chrome : browser;
+    browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        browser.tabs.executeScript(tabs[0].id, { file: "/popup/rules.js", runAt: "document_end" });
     });
 
-    chrome.extension.onRequest.addListener(function (request, sender, sendResponse) {
-        if (!hasRun && request === "done") {
-            hasRun = true;
-            var bgp = chrome.extension.getBackgroundPage();
+    browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
-            Ajax.load(bgp.page, updateItem);
-            createResults(bgp.page);
+        if (!hasRun && request.type === "done") {
+            hasRun = true;
+            var result = request.data;
+
+            Ajax.load(result, updateItem);
+            createResults(result);
         }
     });
 
@@ -23,7 +24,7 @@ var hasRun = false;
             li = li.parentNode;
 
         if (li.tagName !== "LI")
-            return
+            return;
 
         var span = li.querySelector("span");
 

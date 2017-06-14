@@ -1,5 +1,14 @@
+function GetBrowser() {
+    try {
+        if (browser.runtime)
+            return browser;
+    } catch (e) {
+        return chrome;
+    }
+}
 
 (function () {
+
     var stylesheets = document.styleSheets.length,
         count = 0;
 
@@ -10,7 +19,7 @@
                 "SEO": {
                     microdata: {
                         text: "Add meaning with Microdata",
-                        result: document.querySelector("[itemscope]") !== null,
+                        result: document.querySelector("[itemscope]") !== null || document.querySelector("script[type='application/ld+json']") !== null,
                         description: "<a href='http://schema.org/'>Schema.org referrence</a>"
                     },
                     description: {
@@ -51,7 +60,7 @@
                     validator: {
                         text: "HTML validation",
                         result: "n/a",
-                        html: new XMLSerializer().serializeToString(document),
+                        html: GetHtml(document),
                         description: "<a href='http://validator.nu/'>Online validator</a>"
                     },
                 },
@@ -106,11 +115,11 @@
         if (!result.Mobile.mediaqueries.result) {
             mediaQueryRemote(function (state) {
                 result.Mobile.mediaqueries.result = state;
-                chrome.extension.sendRequest(result, function (response) { });
+                GetBrowser().runtime.sendMessage({ type: "result", data: result }, function (response) { });
             });
         }
         else {
-            chrome.extension.sendRequest(result, function (response) { });
+            GetBrowser().runtime.sendMessage({ type: "result", data: result }, function (response) { });
         }
     };
 
@@ -124,17 +133,22 @@
                 return true;
         }
 
-        for (var s = 0; s < document.styleSheets.length; s++) {
-            var css = document.styleSheets[s];
+        try {
+            for (var s = 0; s < document.styleSheets.length; s++) {
+                var css = document.styleSheets[s];
 
-            if (css.cssRules === null)
-                continue;
+                if (css.cssRules === null)
+                    continue;
 
-            for (var r = 0; r < css.cssRules.length; r++) {
-                if (css.rules[r] && css.rules[r].type === window.CSSRule.MEDIA_RULE) {
-                    return true;
+                for (var r = 0; r < css.cssRules.length; r++) {
+                    if (css.rules[r] && css.rules[r].type === window.CSSRule.MEDIA_RULE) {
+                        return true;
+                    }
                 }
             }
+        }
+        catch (ex) {
+            return false;
         }
 
         return false;
@@ -153,7 +167,7 @@
 
                 var xhr = new XMLHttpRequest();
                 xhr.open("GET", css.href, true);
-                xhr.onreadystatechange = function () {
+                xhr.onload = function () {
 
                     if (xhr.readyState === 4)
                         confirm(xhr, callback);
@@ -177,6 +191,18 @@
         else if (stylesheets === count) {
             callback(false);
         }
+    }
+
+    function GetHtml(document) {
+        var node = document.doctype;
+        var doctype = "<!DOCTYPE "
+            + node.name
+            + (node.publicId ? ' PUBLIC "' + node.publicId + '"' : '')
+            + (!node.publicId && node.systemId ? ' SYSTEM' : '')
+            + (node.systemId ? ' "' + node.systemId + '"' : '')
+            + '>';
+
+        return doctype + document.documentElement.outerHTML;
     }
 
     load();
