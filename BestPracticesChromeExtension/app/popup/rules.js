@@ -107,7 +107,7 @@ function GetBrowser() {
                     pagespeed: {
                         text: "Google PageSpeed (loading...)",
                         result: "n/a",
-                        description: "<a href='https://chrome.google.com/webstore/detail/pagespeed-insights-by-goo/gplegfbjlmmehdoakndmohflojccocli'>Download Google Page Speed</a>"
+                        description: "<a href='https://developers.google.com/speed/pagespeed/insights/'>Google PageSpeed online</a>"
                     },
                 }
             };

@@ -29,8 +29,9 @@
   },
 
   "icons": {
+    "19": "img/vs-19.png",
     "48": "img/vs-48.png",
-    "64": "img/vs-128.png",
+    "64": "img/vs-64.png",
     "128": "img/vs-128.png"
   }
 }
