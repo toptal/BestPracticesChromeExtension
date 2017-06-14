@@ -6,15 +6,13 @@
   "description": "Analyses any web page for violations of best practices",
 
   "permissions": [
-    "tabs",
     "<all_urls>"
   ],
 
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
-        "default": "Alt+W",
-        "mac": "Alt+W"
+        "default": "Alt+W"
       }
     }
   },
