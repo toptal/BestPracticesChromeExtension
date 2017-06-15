@@ -1,11 +1,8 @@
-version: 1.0.{build}
-
-install:
-- cd src\app
-- npm install
+image: Visual Studio 2017
 
 build_script:
 - cd src\app
+- npm install
 - gulp build
 
 artifacts:
