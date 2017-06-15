@@ -35,7 +35,7 @@ function GetBrowser() {
                         result: "n/a",
                         description: "Robots.txt tutorial",
                         url:"http://tools.seobook.com/robots-txt/"
-                    },
+                    }
                 },
                 "Mobile": {
                     mediaqueries: {
@@ -49,7 +49,7 @@ function GetBrowser() {
                         result: document.querySelector("meta[name='viewport']") !== null,
                         description: "Using the viewport",
                         url:"https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag"
-                    },
+                    }
                 },
                 "Usability": {
                     favicon: {
@@ -70,7 +70,7 @@ function GetBrowser() {
                         html: GetHtml(document),
                         description: "Online validator",
                         url: "http://validator.nu/"
-                    },
+                    }
                 },
                 "Accessibility": {
                     landmarks: {
@@ -84,7 +84,7 @@ function GetBrowser() {
                         result: document.querySelector("img:not([alt])") === null,
                         description: "Image 'alt' attribute tips",
                         url: "http://accessibility.psu.edu/images"
-                    },
+                    }
                 },
                 "Environment integration": {
                     twitter: {
@@ -110,7 +110,7 @@ function GetBrowser() {
                         result: document.querySelector("link[rel^='apple-']") !== null,
                         description: "iOS integration",
                         url: "http://developer.apple.com/library/ios/#documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html"
-                    },
+                    }
                 },
                 "Performance": {
                     elements: {
@@ -124,7 +124,7 @@ function GetBrowser() {
                         result: "n/a",
                         description: "Google PageSpeed online",
                         url: "https://developers.google.com/speed/pagespeed/insights/"
-                    },
+                    }
                 }
             };
 
@@ -137,7 +137,7 @@ function GetBrowser() {
         else {
             GetBrowser().runtime.sendMessage({ type: "result", data: result }, function (response) { });
         }
-    };
+    }
 
     function mediaQueryLocal() {
 
@@ -168,7 +168,7 @@ function GetBrowser() {
         }
 
         return false;
-    };
+    }
 
     function mediaQueryRemote(callback) {
 
@@ -195,7 +195,7 @@ function GetBrowser() {
                 confirm(null, callback);
             }
         }
-    };
+    }
 
     function confirm(xhr, callback) {
 

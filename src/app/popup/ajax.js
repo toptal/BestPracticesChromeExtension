@@ -26,7 +26,7 @@ var Ajax = (function () {
 
         // Robots.txt and XML Sitemap
         getUrl(page.url + "/robots.txt", function (xhr) {
-            page.SEO.robotstxt.result = (xhr.status === 200);
+            page.SEO.robotstxt.result = xhr.status === 200;
             //page.SEO.sitemap = { text: "Sitemap.xml exist", result: xhr.responseText.indexOf("sitemap") > -1 };
             updateItem("robotstxt", page.SEO.robotstxt);
         });
