@@ -7,5 +7,5 @@ build_script:
 - gulp build
 
 artifacts:
-- path: '*.zip'
+- path: '**\*.zip'
   name: Extension
