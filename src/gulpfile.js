@@ -1,37 +1,45 @@
-/// <binding BeforeBuild='build' />
+/// <binding BeforeBuild='build' Clean='clean' />
 
 var gulp = require("gulp"),
+    shell = require("gulp-shell"),
     zip = require("gulp-zip"),
+    run = require("gulp-run"),
     rimraf = require("rimraf");
 
-gulp.task("build", ["webextension", "edge"]);
+gulp.task("build", ["edge"]);
 
-// Web Extensions
-gulp.task("webextension", function () {
+gulp.task("package", ["webextension:package", "edge:package"]);
+
+gulp.task("clean", function (cb) {
+    rimraf("temp", cb);
+});
+
+
+// Package
+gulp.task("webextension:package", function (cb) {
     return gulp.src("app/**/*")
         .pipe(zip("WebDevelopChecklist.zip"))
         .pipe(gulp.dest("dist"));
 });
 
-//Edge
-gulp.task("edge", ["edge:zip", "edge:copyfiles", "edge:copytodist", "edge:clean"]);
+gulp.task("edge:package", shell.task([
+    "manifoldjs -l debug -p edgeextension package temp\\edgeextension\\manifest\\"
+]));
 
-gulp.task("edge:copyfiles", function () {
-    return gulp.src("edge/**/*")
-        .pipe(gulp.dest("temp/edge"));
-});
-
-gulp.task("edge:copytodist", function () {
-    return gulp.src("app/**/*")
-        .pipe(gulp.dest("temp/edge/Extension"));
-});
-
-gulp.task("edge:zip", function () {
-    return gulp.src("temp/edge/Extension/**/*")
-        .pipe(zip("WebDevelopChecklist-Edge.zip"))
+gulp.task("edge:copyappx", function (cb) {
+    return gulp.src("temp/edgeextension/package/*.appx", { base: "temp/edgeextension/package"})
         .pipe(gulp.dest("dist"));
 });
 
-gulp.task("edge:clean", function (cb) {
-    rimraf("temp", cb);
+//Edge
+gulp.task("edge", ["edge:copyfiles", "edge:copytodist"]);
+
+gulp.task("edge:copyfiles", function (cb) {
+    return gulp.src("edge/**/*")
+        .pipe(gulp.dest("temp/edgeextension"));
+});
+
+gulp.task("edge:copytodist", function (cb) {
+    return gulp.src("app/**/*")
+        .pipe(gulp.dest("temp/edgeextension/manifest/Extension"));
 });

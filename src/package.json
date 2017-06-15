@@ -3,12 +3,15 @@
   "version": "1.0.0",
 
   "scripts": {
-    "build": "gulp build"
+    "build": "gulp build && gulp package && gulp edge:copyappx && npm run clean",
+    "clean": "gulp clean"
   },
 
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-shell": "0.6.3",
     "gulp-zip": "^4.0.0",
+    "manifoldjs": "0.7.6",
     "rimraf": "2.6.1"
   }
 }
