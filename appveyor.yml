@@ -1,0 +1,13 @@
+version: 1.0.{build}
+
+install:
+- cd src\app
+- npm install
+
+build_script:
+- cd src\app
+- gulp build
+
+artifacts:
+- path: '*.zip'
+  name: Extension

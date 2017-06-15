@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6ABE136D-C282-4376-A119-CD1496EDDBE7}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -13,20 +14,21 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "app", "src\", "{5E09196E-42
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_7308"
-		Debug.AspNetCompiler.PhysicalPath = "src\app\"
+		Debug.AspNetCompiler.PhysicalPath = "src\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_7308\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_7308"
-		Release.AspNetCompiler.PhysicalPath = "src\app\"
+		Release.AspNetCompiler.PhysicalPath = "src\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_7308\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "7308"
+		SlnRelativePath = "src\"
 	EndProjectSection
 EndProject
 Global
