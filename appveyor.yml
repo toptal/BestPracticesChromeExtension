@@ -6,5 +6,8 @@ build_script:
 - npm run build
 
 artifacts:
-- path: '**\*.zip'
-  name: Extension
+- path: 'src\dist\*.zip'
+  name: WebExtension
+
+- path: 'src\dist\*.appx'
+  name: EdgeExtension
