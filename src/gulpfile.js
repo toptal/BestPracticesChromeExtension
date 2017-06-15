@@ -33,6 +33,5 @@ gulp.task("edge:zip", function () {
 });
 
 gulp.task("edge:clean", function (cb) {
-    rimraf("temp");
-    cb();
+    rimraf("temp", cb);
 });
