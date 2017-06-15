@@ -1,5 +1,8 @@
 image: Visual Studio 2017
 
+environment:
+  PATH: src\node_modules\.bin;$(PATH)
+
 build_script:
 - cd src\app
 - npm install
