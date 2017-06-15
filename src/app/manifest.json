@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Web Developer Checklist",
-  "version": "1.8",
+  "version": "1.8.1",
   "author": "Mads Kristensen",
   "description": "Analyses any web page for violations of best practices",
 
