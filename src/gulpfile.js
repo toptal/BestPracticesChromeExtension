@@ -3,7 +3,6 @@
 var gulp = require("gulp"),
     shell = require("gulp-shell"),
     zip = require("gulp-zip"),
-    run = require("gulp-run"),
     rimraf = require("rimraf");
 
 gulp.task("build", ["edge"]);
