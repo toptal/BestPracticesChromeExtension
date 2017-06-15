@@ -20,94 +20,110 @@ function GetBrowser() {
                     microdata: {
                         text: "Add meaning with Microdata",
                         result: document.querySelector("[itemscope]") !== null || document.querySelector("script[type='application/ld+json']") !== null,
-                        description: "<a href='http://schema.org/'>Schema.org referrence</a>"
+                        description: "Schema.org referrence",
+                        url:"http://schema.org/"
                     },
                     description: {
                         text: "Meta description",
                         result: document.querySelector("meta[name=description]") !== null,
-                        description: "<a href='http://www.agent-seo.com/seo/meta-description-optimization-writing-effective-meta-descriptions-for-seo/'>Meta description</a>"
+                        description: "Meta description",
+                        url: "http://www.agent-seo.com/seo/meta-description-optimization-writing-effective-meta-descriptions-for-seo/"
                     },
                     //h1: { text: "Use <h1> once per page", result: document.querySelectorAll("h1").length === 1, description: "<a href='http://tools.seobook.com/robots-txt/'>Robots.txt tutorial</a>" },
                     robotstxt: {
                         text: "Robots.txt exist",
                         result: "n/a",
-                        description: "<a href='http://tools.seobook.com/robots-txt/'>Robots.txt tutorial</a>"
+                        description: "Robots.txt tutorial",
+                        url:"http://tools.seobook.com/robots-txt/"
                     },
                 },
                 "Mobile": {
                     mediaqueries: {
                         text: "CSS Media Queries",
                         result: mediaQueryLocal(),
-                        description: "<a href='http://cssmediaqueries.com/what-are-css-media-queries.html'>Media queries explained</a>"
+                        description: "Media queries explained",
+                        url: "http://cssmediaqueries.com/what-are-css-media-queries.html"
                     },
                     viewport: {
                         text: "Viewport meta tag",
                         result: document.querySelector("meta[name='viewport']") !== null,
-                        description: "<a href='https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag'>Using the viewport</a>"
+                        description: "Using the viewport",
+                        url:"https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag"
                     },
                 },
                 "Usability": {
                     favicon: {
                         text: "Favicon",
                         result: document.querySelector("link[rel='shortcut icon']") !== null || document.querySelector("meta[itemprop='image']") !== null,
-                        description: "<a href='http://www.xiconeditor.com/'>Online generator</a>"
+                        description: "Online generator",
+                        url: "http://www.xiconeditor.com/"
                     },
                     friendlyurls: {
                         text: "Use friendly URLs",
                         result: location.href.indexOf("?") === -1,
-                        description: "<a href='http://www.techterms.com/definition/friendly_url'>Explanation and guide</a>"
+                        description: "Explanation and guide",
+                        url: "http://www.techterms.com/definition/friendly_url"
                     },
                     validator: {
                         text: "HTML validation",
                         result: "n/a",
                         html: GetHtml(document),
-                        description: "<a href='http://validator.nu/'>Online validator</a>"
+                        description: "Online validator",
+                        url: "http://validator.nu/"
                     },
                 },
                 "Accessibility": {
                     landmarks: {
                         text: "WAI-ARIA Landmarks",
                         result: document.querySelector("[role]") !== null,
-                        description: "<a href='http://accessibility.oit.ncsu.edu/blog/2011/06/30/using-aria-landmarks-a-demonstration/'>Using Landmarks</a>"
+                        description: "Using Landmarks",
+                        url: "http://accessibility.oit.ncsu.edu/blog/2011/06/30/using-aria-landmarks-a-demonstration/"
                     },
                     alt: {
                         text: "Use 'alt' attributes on images",
                         result: document.querySelector("img:not([alt])") === null,
-                        description: "<a href='http://accessibility.psu.edu/images'>Image 'alt' attribute tips</a>"
+                        description: "Image 'alt' attribute tips",
+                        url: "http://accessibility.psu.edu/images"
                     },
                 },
                 "Environment integration": {
                     twitter: {
                         text: "Twitter Cards",
                         result: document.querySelector("meta[name='twitter:title']") !== null,
-                        description: "<a href='https://dev.twitter.com/docs/cards'>Introduction to Twitter Cards</a>"
+                        description: "Introduction to Twitter Cards",
+                        url:"https://dev.twitter.com/docs/cards"
                     },
                     opengraph: {
                         text: "OpenGraph/Facebook",
                         result: document.querySelector("meta[property^='og:']") !== null,
-                        description: "<a href='http://ogp.me/'>OpenGraph protocol reference</a>"
+                        description: "OpenGraph protocol reference",
+                        url: "http://ogp.me/"
                     },
                     windows: {
                         text: "Windows 8/Windows Phone",
                         result: document.querySelector("meta[name='application-name']") !== null || document.querySelector("meta[name^='msapplication']") !== null,
-                        description: "<a href='http://www.buildmypinnedsite.com/'>IE guide</a>"
+                        description: "IE guide",
+                        url: "http://www.buildmypinnedsite.com/"
                     },
                     ios: {
                         text: "Apple iOS",
                         result: document.querySelector("link[rel^='apple-']") !== null,
-                        description: "<a href='http://developer.apple.com/library/ios/#documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html'>iOS integration</a>"
+                        description: "iOS integration",
+                        url: "http://developer.apple.com/library/ios/#documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html"
                     },
                 },
                 "Performance": {
                     elements: {
                         text: "Number of DOM elements (" + domElements + ")",
                         result: domElements < 2000,
-                        description: "<a href='http://www.xpertdeveloper.com/2010/08/reduce-the-number-of-dom-elements-to-speed-up-your-website/'>Reduce the # of DOM elements</a>"
+                        description: "Reduce the # of DOM elements",
+                        url: "http://www.xpertdeveloper.com/2010/08/reduce-the-number-of-dom-elements-to-speed-up-your-website/"
                     },
                     pagespeed: {
                         text: "Google PageSpeed (loading...)",
                         result: "n/a",
-                        description: "<a href='https://developers.google.com/speed/pagespeed/insights/'>Google PageSpeed online</a>"
+                        description: "Google PageSpeed online",
+                        url: "https://developers.google.com/speed/pagespeed/insights/"
                     },
                 }
             };

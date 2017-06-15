@@ -93,6 +93,10 @@ li {
         transition: all .4s ease;
     }
 
+    li[data-item=validator] span {
+        line-height: 18px;
+    }
+
     li[data-active] p:after {
         transform: rotate(-90deg);
     }

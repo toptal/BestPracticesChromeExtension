@@ -51,7 +51,7 @@ var hasRun = false;
 
     function createResults(page) {
 
-        document.getElementById("results").innerHTML = "";
+        document.getElementById("results").innerText = "";
 
         for (var cat in page) {
 
@@ -71,7 +71,10 @@ var hasRun = false;
                 li.appendChild(text);
 
                 var span = document.createElement("span");
-                span.innerHTML = page[cat][item].description;
+                var a = document.createElement("a");
+                a.innerText = page[cat][item].description;
+                a.href = page[cat][item].url;
+                span.appendChild(a);
                 li.appendChild(span);
 
                 ul.appendChild(li);
@@ -105,7 +108,15 @@ var hasRun = false;
             var span = li.querySelector("span");
 
             if (span) {
-                span.innerHTML = item.description;
+                if (item.url) {
+                    var a = document.createElement("a");
+                    a.innerText = item.description;
+                    a.href = item.url;
+                    span.replaceChild(a, span.firstChild);
+                }
+                else {
+                    span.innerText = item.description;
+                }
             }
 
             reportProgress();

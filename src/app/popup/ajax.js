@@ -58,10 +58,11 @@ var Ajax = (function () {
                         page.Usability.validator.description = "";
 
                         for (var i = 0; i < json.messages.length; i++) {
-                            page.Usability.validator.description += "<mark title='Line: " + json.messages[i].lastLine + " Column: " + json.messages[i].lastColumn + "'>" + json.messages[i].message + "</mark>";
+                            page.Usability.validator.description += json.messages[i].message + "\r\r";
                         }
                     }
 
+                    delete page.Usability.validator.url;
                     updateItem("validator", page.Usability.validator);
                 }
             };
