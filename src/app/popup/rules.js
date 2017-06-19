@@ -100,7 +100,7 @@ function GetBrowser() {
                         url: "http://ogp.me/"
                     },
                     windows: {
-                        text: "Windows 8/Windows Phone",
+                        text: "Windows",
                         result: document.querySelector("meta[name='application-name']") !== null || document.querySelector("meta[name^='msapplication']") !== null,
                         description: "IE guide",
                         url: "http://www.buildmypinnedsite.com/"
