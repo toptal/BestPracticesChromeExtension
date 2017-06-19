@@ -5,6 +5,13 @@ A browser extension for Chrome, Firefox, Edge and Opera.
 
 ![Screenshot](art/screenshot.png)
 
+## Download
+
+- [Google Chrome](https://chrome.google.com/webstore/detail/web-developer-checklist/iahamcpedabephpcgkeikbclmaljebjp)
+- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/webdeveloperchecklist/)
+- Opera (pending approval...)
+- Microsoft Edge (pending approval...)
+
 ## Rules
 Various checks are performed on a website to make sure best practices are met. Those checks are handled by the rules engine.
 
@@ -16,7 +23,7 @@ These are the rules:
 Checks that either `itemscope` attributes or `<script type="application/ld+json">` exist.
 
 #### Meta description
-Checks that `<meta name="description" />` exist.
+Checks that `<meta name="description" />` exist in the `<head>`.
 
 #### Robots.txt exist
 Checks if `robots.txt` exist in the root of the website.
@@ -27,12 +34,12 @@ Checks if `robots.txt` exist in the root of the website.
 Checks if `@media` exist in any linked stylesheet.
 
 #### Viewport meta tag
-Checks that `<meta name="viewport" />` exist.
+Checks that `<meta name="viewport" />` exist in the `<head>`.
 
 ### Usability
 
 #### Favicon
-Checks that either `<link rel="shortcut icon" />` or `<meta itemtype="image">` exist on the page. If not, it checks if `favicon.ico` exist in the root of the website.
+Checks that either `<link rel="shortcut icon" />` or `<meta itemtype="image">` exist in the `<head>`. If not, it checks if `favicon.ico` exist in the root of the website.
 
 #### Use friendly URLs
 Checks that the URL doesn't contain any URL parameters. Technically, it checks if a `?` exist in the URL.
@@ -69,3 +76,6 @@ Checks that the number of DOM elements on the page doesn't exeed 2000.
 
 #### Google PageSpeed score
 Checks the page on Google PageSpeed Insights to make sure it gets a score of at least 90.
+
+## Developers
+To fork and build your own copy of this extension, simply clone the repo and run `npm run build`.

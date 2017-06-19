@@ -25,7 +25,7 @@ function GetBrowser() {
                     },
                     description: {
                         text: "Meta description",
-                        result: document.querySelector("meta[name=description]") !== null,
+                        result: document.querySelector("head>meta[name=description]") !== null,
                         description: "Meta description",
                         url: "http://www.agent-seo.com/seo/meta-description-optimization-writing-effective-meta-descriptions-for-seo/"
                     },
@@ -46,7 +46,7 @@ function GetBrowser() {
                     },
                     viewport: {
                         text: "Viewport meta tag",
-                        result: document.querySelector("meta[name='viewport']") !== null,
+                        result: document.querySelector("head>meta[name='viewport']") !== null,
                         description: "Using the viewport",
                         url:"https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag"
                     }
@@ -54,7 +54,7 @@ function GetBrowser() {
                 "Usability": {
                     favicon: {
                         text: "Favicon",
-                        result: document.querySelector("link[rel='shortcut icon']") !== null || document.querySelector("meta[itemprop='image']") !== null,
+                        result: document.querySelector("head>link[rel='shortcut icon']") !== null || document.querySelector("meta[itemprop='image']") !== null,
                         description: "Online generator",
                         url: "http://www.xiconeditor.com/"
                     },
