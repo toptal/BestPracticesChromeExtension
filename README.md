@@ -11,6 +11,7 @@ A browser extension for Chrome, Firefox, Edge and Opera.
 - [Firefox](https://addons.mozilla.org/en-US/firefox/addon/webdeveloperchecklist/)
 - Opera (pending approval...)
 - Microsoft Edge (pending approval...)
+- Safari (works from source but not uploaded to App Store)
 
 ## Rules
 Various checks are performed on a website to make sure best practices are met. Those checks are handled by the rules engine.
