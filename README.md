@@ -9,8 +9,8 @@ A browser extension for Chrome, Firefox, Edge and Opera.
 
 - [Google Chrome](https://chrome.google.com/webstore/detail/web-developer-checklist/iahamcpedabephpcgkeikbclmaljebjp)
 - [Firefox](https://addons.mozilla.org/en-US/firefox/addon/webdeveloperchecklist/)
+- [Microsoft Edge](https://www.microsoft.com/store/apps/9pbgqpbgbfh5)
 - Opera (pending approval...)
-- Microsoft Edge (pending approval...)
 - Safari (works from source but not uploaded to App Store)
 
 ## Rules
