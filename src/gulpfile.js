@@ -43,12 +43,17 @@ gulp.task("edge", ["edge:copyfiles", "edge:copytodist"]);
 
 gulp.task("edge:copyfiles", function (cb) {
     return gulp.src("edge/**/*")
-        .pipe(bom())
         .pipe(gulp.dest("temp/edgeextension"));
 });
 
 gulp.task("edge:copytodist", function (cb) {
     return gulp.src("app/**/*")
-        .pipe(bom())
         .pipe(gulp.dest("temp/edgeextension/manifest/Extension"));
+});
+
+gulp.task("edge:bomdist", function (cb) {
+    var ext = "temp/edgeextension/manifest/Extension";
+    return gulp.src([ext + "*.css", ext + "*.js", ext + "*.html"])
+        .pipe(bom())
+        .pipe(gulp.dest("temp/edgeextension/manifest/Extension/"));
 });
