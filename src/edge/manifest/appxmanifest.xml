@@ -7,7 +7,7 @@
 	<Identity
 		Name="33451madskristensen.WebDeveloperChecklist"
 		Publisher="CN=2121BFD2-DAD5-41E3-B863-DFF92652AB65"
-		Version="1.8.2.0" />
+		Version="1.8.3.0" />
 
 	<Properties>
 		<DisplayName>Web Developer Checklist</DisplayName>

@@ -9,6 +9,7 @@
 
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-bom": "1.0.0",
     "gulp-rename": "1.2.2",
     "gulp-shell": "0.6.3",
     "gulp-zip": "^4.0.0",
