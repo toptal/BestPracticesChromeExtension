@@ -39,7 +39,7 @@ gulp.task("edge:copyappx", function (cb) {
 });
 
 //Edge
-gulp.task("edge", ["edge:copyfiles", "edge:copytodist"]);
+gulp.task("edge", ["edge:copyfiles", "edge:copytodist", "edge:bomdist"]);
 
 gulp.task("edge:copyfiles", function (cb) {
     return gulp.src("edge/**/*")
