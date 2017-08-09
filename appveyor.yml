@@ -3,7 +3,10 @@ image: Visual Studio 2017
 build_script:
 - cd src\app
 - npm install
-- npm run build
+- gulp build
+- gulp package
+- cd ..
+- ps: ./build.ps1
 
 artifacts:
 - path: 'src\dist\*.zip'

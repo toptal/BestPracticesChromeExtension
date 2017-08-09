@@ -1,4 +1,4 @@
-function sendMessage(extObject, request) {
+﻿function sendMessage(extObject, request) {
     if (request.type === "result") {
         extObject.runtime.sendMessage({ type: "done", data: request.data }, function (response) { });
     }

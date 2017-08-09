@@ -1,4 +1,4 @@
-
+﻿
 var Ajax = (function () {
 
     function load(page, updateItem) {

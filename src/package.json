@@ -1,12 +1,10 @@
 {
   "name": "myproject",
   "version": "1.0.0",
-
   "scripts": {
     "build": "gulp build && gulp package && gulp edge:copyappx && npm run clean",
     "clean": "gulp clean"
   },
-
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-bom": "1.0.0",

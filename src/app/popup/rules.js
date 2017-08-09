@@ -1,4 +1,4 @@
-function GetBrowser() {
+﻿function GetBrowser() {
     try {
         if (browser.runtime)
             return browser;

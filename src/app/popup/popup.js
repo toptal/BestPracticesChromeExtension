@@ -1,4 +1,4 @@
-var hasRun = false;
+﻿var hasRun = false;
 
 (function () {
     browser = chrome.tabs ? chrome : browser;
