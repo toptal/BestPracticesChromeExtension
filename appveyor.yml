@@ -4,8 +4,6 @@ build_script:
 - cd src\app
 - npm install
 - npm run build
-- cd ..\..
-- ps: ./build.ps1
 
 artifacts:
 - path: 'src\dist\*.zip'
