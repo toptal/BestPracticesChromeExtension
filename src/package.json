@@ -2,7 +2,7 @@
   "name": "myproject",
   "version": "1.0.0",
   "scripts": {
-    "build": "gulp build && gulp package && gulp edge:copyappx && npm run clean",
+    "build": "gulp build && gulp package",
     "clean": "gulp clean"
   },
   "devDependencies": {
