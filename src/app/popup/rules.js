@@ -75,7 +75,7 @@
                 "Accessibility": {
                     landmarks: {
                         text: "WAI-ARIA Landmarks",
-                        result: document.querySelector("[role]") !== null,
+                        result: document.querySelector("[role], main, footer, header, aside, section, article, nav") !== null,
                         description: "Using Landmarks",
                         url: "http://accessibility.oit.ncsu.edu/blog/2011/06/30/using-aria-landmarks-a-demonstration/"
                     },
@@ -87,14 +87,8 @@
                     }
                 },
                 "Environment integration": {
-                    twitter: {
-                        text: "Twitter Cards",
-                        result: document.querySelector("meta[name='twitter:title']") !== null,
-                        description: "Introduction to Twitter Cards",
-                        url:"https://dev.twitter.com/docs/cards"
-                    },
                     opengraph: {
-                        text: "OpenGraph/Facebook",
+                        text: "OpenGraph",
                         result: document.querySelector("meta[property^='og:']") !== null,
                         description: "OpenGraph protocol reference",
                         url: "http://ogp.me/"
@@ -140,6 +134,14 @@
     }
 
     function mediaQueryLocal() {
+
+        var styles = document.querySelectorAll("style");
+
+        for (var s = 0; s < styles.length; s++) {
+            var style = styles[s];
+            if (style.textContent.indexOf("@media") > -1)
+                return true;
+        }
 
         var links = document.querySelectorAll("link[media]");
 
