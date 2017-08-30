@@ -3,7 +3,7 @@
 (function () {
     browser = chrome.tabs ? chrome : browser;
     browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-        browser.tabs.executeScript(tabs[0].id, { file: "/popup/rules.js", runAt: "document_end" });
+        browser.tabs.executeScript(tabs[0].id, { file: "/rules.js", runAt: "document_end" });
     });
 
     browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {

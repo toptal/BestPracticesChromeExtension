@@ -20,24 +20,24 @@
 
   "browser_action": {
     "default_icon": {
-      "19": "img/vs-19.png",
-      "48": "img/vs-48.png",
-      "64": "img/vs-64.png",
-      "128": "img/vs-128.png"
+      "19": "vs-19.png",
+      "48": "vs-48.png",
+      "64": "vs-64.png",
+      "128": "vs-128.png"
     },
-    "default_popup": "popup/popup.html",
+    "default_popup": "popup.html",
     "default_title": "Web Developer Checklist"
   },
 
   "background": {
-    "scripts": [ "background/background.js" ],
+    "scripts": [ "background.js" ],
     "persistent": false
   },
 
   "icons": {
-    "19": "img/vs-19.png",
-    "48": "img/vs-48.png",
-    "64": "img/vs-64.png",
-    "128": "img/vs-128.png"
+    "19": "vs-19.png",
+    "48": "vs-48.png",
+    "64": "vs-64.png",
+    "128": "vs-128.png"
   }
 }
